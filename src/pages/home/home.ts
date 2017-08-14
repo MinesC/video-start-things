@@ -15,7 +15,7 @@ export class HomePage {
 	publicKey = '96558ca279bf14f5aead546ced0cdd2b';
 	baseUrl = 'https://gateway.marvel.com/v1/public/comics?';
 	ts = new Date().getTime();
-	limit = 40;
+	limit = 41;
 	offset = 0;
 	md = Md5.hashStr(this.ts+'acabe8a3a268841c5fb1499bfbcd43829ee8b1e3'+this.publicKey);
   encodedPath = this.baseUrl +'&apikey=' + this.publicKey + '&hash='+ this.md+ '&ts='+this.ts + '&limit='+ this.limit +'&format=comic';

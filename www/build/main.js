@@ -132,7 +132,6 @@ var HomePage = (function () {
         this.http.get(url)
             .map(function (res) { return res.json(); }).subscribe(function (data) {
             _this.comics = data.data.results;
-            console.log(_this.comics);
         }, function (err) {
             console.log('error in MCU');
         });
@@ -143,9 +142,10 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"/Users/mines/Documents/pruebas/video-start-things/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <ion-title>\n      <img src="../assets/images/logo.jpg" />\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n<ion-searchbar class="seeTr" (ionInput)="comicSearch($event)"></ion-searchbar>\n<div class="container-fluid">\n\n        <button class="button_box" *ngFor="let comic of comics" (click)="comicSelected(comic)"> \n            <ion-card >\n\n              <ion-card-title padding>\n                <h2 class="nameTitle">{{comic.title.split(\'#\')[0]}}</h2>\n                <p class="contentTitle">Issue #{{comic.issueNumber}}</p>\n              </ion-card-title>\n              <img class="portrait" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}"/>\n\n              <ion-card-content>\n                <p class="contentSerie">From the series:</p>\n                <p class="serieName">{{comic.series.name}}</p>\n              </ion-card-content>\n          </ion-card>\n      </button> \n</div>\n\n\n\n	<ion-infinite-scroll (ionInfinite)="comicLoadMore($event)">\n	<ion-infinite-scroll-content></ion-infinite-scroll-content>\n	</ion-infinite-scroll>\n\n</ion-content>'/*ion-inline-end:"/Users/mines/Documents/pruebas/video-start-things/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _b || Object])
 ], HomePage);
 
+var _a, _b;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
@@ -321,10 +321,11 @@ var DetailPage = (function () {
     DetailPage.prototype.getCharacters = function () {
         var _this = this;
         var url = this.comic.characters.collectionURI + '?&apikey=' + this.publicKey + '&hash=' + this.md + '&ts=' + this.ts;
+        console.log('url');
+        console.log('characters');
         this.http.get(url)
             .map(function (res) { return res.json(); }).subscribe(function (data) {
             _this.characters = data.data.results;
-            console.log(_this.characters);
         }, function (err) {
             console.log('error in MCU');
             return;
@@ -336,7 +337,6 @@ var DetailPage = (function () {
         this.http.get(url)
             .map(function (res) { return res.json(); }).subscribe(function (data) {
             _this.creators = data.data.results;
-            console.log(_this.creators);
         }, function (err) {
             console.log('error in MCU');
             return;
@@ -352,9 +352,10 @@ DetailPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-detail',template:/*ion-inline-start:"/Users/mines/Documents/pruebas/video-start-things/src/pages/detail/detail.html"*/'<!--\n  Generated template for the DetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="dark">\n    <ion-title class="details-header" text-center>	{{comic.title.split(\'#\')[0]}}\n    </ion-title>\n  </ion-navbar>\n\n\n	<ion-toolbar no-border-top>\n    <ion-segment [(ngModel)]="segments" mode="ios">\n\n      <ion-segment-button value="description">\n        Description\n      </ion-segment-button>\n\n      <ion-segment-button value="images">\n 				Images\n      </ion-segment-button>\n\n      <ion-segment-button value="characters">\n        Characters\n      </ion-segment-button>\n\n      <ion-segment-button value="creators">\n        Creators\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n\n\n</ion-header>\n\n\n<ion-content padding>\n  <div [ngSwitch]="segments">\n    <ion-list class="specialBack" *ngSwitchCase="\'description\'" >\n			<ion-grid>\n				<ion-row center>\n					<ion-col>\n					<div class= "post-meta">\n					<h1>{{comic.title}}</h1>\n					</div>\n					</ion-col>\n				</ion-row>\n\n				<ion-row>\n					<ion-col center> \n					<div padding class = "post-image-right">\n					<img class="portrait" src="{{comic.thumbnail.path}}.jpg"/>\n					</div>\n					</ion-col>\n					<ion-col>\n					<div padding class="post-data">\n					 <h2> Summary:</h2>\n					 <p>{{comic.description}}</p>\n					 </div>\n					 </ion-col>\n				</ion-row>\n\n			</ion-grid>\n    </ion-list>\n\n    <ion-list class="specialBack" *ngSwitchCase="\'images\'" disabled>\n	    <div padding class="post-image" *ngFor="let image of comic.images">\n		    <img class="image-size-medium" src="{{image.path}}.jpg">\n	    </div>\n    </ion-list>\n\n    <ion-list class="specialBack" *ngSwitchCase="\'characters\'" disabled>\n      <ion-grid>\n      <div *ngFor="let character of characters">\n          <ion-row>\n            <ion-col>\n              <ion-item text-wrap class="post-char" no-lines>\n                <ion-avatar item-start>\n                  <img padding src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}"/>\n                </ion-avatar>\n                <h2 class="nameTitle">{{character.name}}</h2>\n                <p class="contentStyle">{{character.description}}</p>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n      </div>\n      </ion-grid>\n    </ion-list>\n\n    <ion-list class="specialBack" *ngSwitchCase="\'creators\'" disabled>\n      <ion-grid>\n      <div *ngFor="let creator of creators">\n          <ion-row>\n            <ion-col>\n              <ion-item class="post-char" no-lines>\n                <ion-avatar item-start>\n                  <img padding src="{{creator.thumbnail.path}}.{{creator.thumbnail.extension}}"/>\n                </ion-avatar>\n                <h2 class="nameTitle">{{creator.fullName}}</h2>\n                <p class="contentStyle"></p>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n      </div>\n      </ion-grid>\n    </ion-list>\n\n\n\n  </div>\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/mines/Documents/pruebas/video-start-things/src/pages/detail/detail.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _c || Object])
 ], DetailPage);
 
+var _a, _b, _c;
 //# sourceMappingURL=detail.js.map
 
 /***/ })

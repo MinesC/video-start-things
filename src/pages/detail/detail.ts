@@ -33,10 +33,11 @@ export class DetailPage {
 
   getCharacters(){
   	let url = this.comic.characters.collectionURI + '?&apikey='+ this.publicKey + '&hash=' + this.md + '&ts=' +this.ts;
-  	this.http.get(url)
+  	console.log('url');
+    console.log('characters');
+    this.http.get(url)
     .map(res => res.json()).subscribe(data => {
         this.characters =  data.data.results;
-        console.log(this.characters);
     },
     err => {
         console.log('error in MCU');
@@ -49,7 +50,6 @@ export class DetailPage {
         		    this.http.get(url)
           .map(res => res.json()).subscribe(data => {
               this.creators=  data.data.results;
-              console.log(this.creators);
           },
           err => {
               console.log('error in MCU');

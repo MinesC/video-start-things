@@ -33,8 +33,7 @@ export class DetailPage {
 
   getCharacters(){
   	let url = this.comic.characters.collectionURI + '?&apikey='+ this.publicKey + '&hash=' + this.md + '&ts=' +this.ts;
-  	console.log('url');
-    console.log('characters');
+  	url = url.replace('http', 'https');
     this.http.get(url)
     .map(res => res.json()).subscribe(data => {
         this.characters =  data.data.results;
@@ -47,6 +46,7 @@ export class DetailPage {
 
   getCreators(){
   	 	let url = this.comic.creators.collectionURI + '?&apikey='+ this.publicKey + '&hash=' + this.md + '&ts=' +this.ts;
+      url = url.replace('http', 'https');
         		    this.http.get(url)
           .map(res => res.json()).subscribe(data => {
               this.creators=  data.data.results;

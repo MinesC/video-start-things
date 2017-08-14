@@ -321,8 +321,7 @@ var DetailPage = (function () {
     DetailPage.prototype.getCharacters = function () {
         var _this = this;
         var url = this.comic.characters.collectionURI + '?&apikey=' + this.publicKey + '&hash=' + this.md + '&ts=' + this.ts;
-        console.log('url');
-        console.log('characters');
+        url = url.replace('http', 'https');
         this.http.get(url)
             .map(function (res) { return res.json(); }).subscribe(function (data) {
             _this.characters = data.data.results;
@@ -334,6 +333,7 @@ var DetailPage = (function () {
     DetailPage.prototype.getCreators = function () {
         var _this = this;
         var url = this.comic.creators.collectionURI + '?&apikey=' + this.publicKey + '&hash=' + this.md + '&ts=' + this.ts;
+        url = url.replace('http', 'https');
         this.http.get(url)
             .map(function (res) { return res.json(); }).subscribe(function (data) {
             _this.creators = data.data.results;

@@ -1,14 +1,38 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>
-      Ionic Blank
+      <img src="../assets/images/logo.jpg" />
     </ion-title>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-searchbar class="seeTr" (ionInput)="comicSearch($event)"></ion-searchbar>
+<div class="container-fluid">
+
+        <button class="button_box" *ngFor="let comic of comics" (click)="comicSelected(comic)"> 
+            <ion-card >
+
+              <ion-card-title padding>
+                <h2 class="nameTitle">{{comic.title.split('#')[0]}}</h2>
+                <p class="contentTitle">Issue #{{comic.issueNumber}}</p>
+              </ion-card-title>
+              <img class="portrait" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}"/>
+
+              <ion-card-content>
+                <p class="contentSerie">From the series:</p>
+                <p class="serieName">{{comic.series.name}}</p>
+              </ion-card-content>
+          </ion-card>
+      </button> 
+</div>
+
+
+
+	<ion-infinite-scroll (ionInfinite)="comicLoadMore($event)">
+	<ion-infinite-scroll-content></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+
 </ion-content>

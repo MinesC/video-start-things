@@ -1,3 +1,68 @@
 page-home {
 
+	.searchbar-md {
+		padding: 30px;
+        background-image: none;
+        background-color: rgba(0, 0, 0, 0.7) !important;
+
+	}
+
+	.searchbar-md .searchbar-input{
+		background-color: rgba(255,255,255, 0.8);
+		height: 60px;
+		font-size: 2.0rem;
+		color: #616161;
+	}
+
+	.searchbar-md .searchbar-search-icon{
+		left: 20px;
+		top: 20px;
+	}
+    .container-fluid{
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .button_box{
+        margin-left: 10px;
+        max-width: 350px;
+        background-color: transparent;
+    }
+
+    .container-fluid{
+        text-align:center;
+        align-content: center;
+    }
+
+    .portrait{
+        height: 450px;
+    }
+
+    .nameTitle{
+        font-family: TradeGothicBoldCondensed20;
+        font-size: 25px;
+    }
+
+    .contentTitle{
+        font-size: 18px;
+        color: #8F8F8F;
+    }
+    .contentSerie{
+        font-size: 20px;
+        font-family: TradeGothicCondensed18;
+        color:#8F8F8F;
+    }
+
+    .serieName{
+    font-size: 20px;
+        font-family: TradeGothicCondensed18;
+        color:black;
+
+    }
+
+
+
 }
+
+
+
+
